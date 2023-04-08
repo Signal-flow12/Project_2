@@ -1,1 +1,10 @@
 <%- include('../header.ejs', {name: item.name}) %>
+
+<h2 class="itemTitle"><%= item.name %></h2>
+<img src="<%= item.image %>">
+<p class="itemDescription"><%= item.description %></p>
+<p class="itemPrice"><%= item.price %></p>
+
+<h3><a href="/instruments">Back to Instruments</a></h3>
+
+<%- include('../footer.ejs',) %>
