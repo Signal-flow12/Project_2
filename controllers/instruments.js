@@ -1,4 +1,4 @@
-const express = requre('express');
+const express = require('express');
 const router = express.Router();
 
 const { Instruments } = require('../models');
@@ -84,7 +84,7 @@ router.get('/:id/delete', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const item  = await Instruments.findByIdAndDelete(req.params.id)
+        const item = await Instruments.findByIdAndDelete(req.params.id)
     } catch(err) {
         console.log(err);
         next();
