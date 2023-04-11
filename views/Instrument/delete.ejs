@@ -1,0 +1,13 @@
+<%- include('../header.ejs', {name: "Delete " + item.name}) %>
+<h1>Remove Item from Inventory</h1>
+
+<h2 class="itemTitle"><%= item.name %></h2>
+<p class="brand"><%= item.brand %></p>
+<img src="<%= item.image %>">
+<p class="itemPrice"><%= item.price %></p>
+<p class="itemDescription"><%= item.description %></p>
+
+<p class="deleteWarning">Are you sure you want to remove this item from inventory?</p>
+<form method="POST" action="/instruments/<%= item._id %>?_method="DELETE"><input type="submit" value="Yes I'm Sure"></form>
+
+<%- include('../footer.ejs',) %>

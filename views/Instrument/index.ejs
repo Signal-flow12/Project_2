@@ -1,0 +1,14 @@
+<%- include('../header.ejs', {name: 'Instrument Index'}) %>
+
+<h1 class="title">Instruments</h1>
+<br>
+<% for(let i= 0; i < items.length; i++) { %>
+    <div class="indexDiv">
+    <a href="/instruments/<%= items[i]._id %>"<h3><%= items[i].name %></h3>
+    <img src="<%= items[i].image %>" class="indeximg"></a>
+    <p class="indexPrice"><%= item.price %></p>
+    <p class="indexDescription"><%= items[i].description %></p>
+    </div>
+    <% } %>
+
+<%- include('../footer.ejs') %>
