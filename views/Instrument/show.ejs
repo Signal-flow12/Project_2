@@ -1,10 +1,21 @@
 <%- include('../header.ejs', {name: item.name}) %>
 
 <h2 class="itemTitle"><%= item.name %></h2>
+<p class="brand"> <%= item.brand %></p>
 <img src="<%= item.image %>">
-<p class="itemDescription"><%= item.description %></p>
 <p class="itemPrice"><%= item.price %></p>
+<p class="itemDescription"><%= item.description %></p>
+
+
+<p class="editButton"><a href="/instruments/<%= item._id %>/edit"</a>Edit</a></p>
+<p class="deleteButton"><a href="/instruments/<%= item._id %>/delete"</a>Delete</a></p>
+<form method="POST" action="/instruments/toCart">
+    <input type="text" name="id" style="display: none;" value="<%= item._id">
+    <input type="submit" value="Add To Cart">
+</form>
 
 <h3><a href="/instruments">Back to Instruments</a></h3>
+
+
 
 <%- include('../footer.ejs',) %>
