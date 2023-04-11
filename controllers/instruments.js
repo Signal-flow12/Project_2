@@ -2,7 +2,7 @@ const express = requre('express');
 const router = express.Router();
 
 const { Instruments } = require('../models');
-
+//Index route home page
 router.get('', async (req, res, next) => {
     try {
         const item = await Instruments.find({});
@@ -14,10 +14,10 @@ router.get('', async (req, res, next) => {
 });
 
 router.get('/new', (req, res) => {
-    res.render('intruments/new.ejs')
+    res.render('instruments/new.ejs')
 })
-
-router.seed('see', async (req, res, next) => {
+//seed route reset data
+router.seed('/seed', async (req, res, next) => {
     try{
         await Instruments.deleteMany({});
         await Instruments.insertMany(seededData);
@@ -28,3 +28,67 @@ router.seed('see', async (req, res, next) => {
         next();
     }
 })
+//show route
+router.get('/:id', async (req, res, next) => {
+    try {
+        const item = await Instruments.findById(req.params.id);
+        res.render('instruments/show', {item})
+    } catch (err) {
+        console.log(err)
+        next();
+    }
+})
+//post route
+router.post('', async (req, res, next) => {
+    try{
+        const item = await Instruments.create(req.body);
+        res.redirect('/instruments')
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+})
+
+//Edit/Get route 
+router.get('/:id/edit', async (req, res, next) => {
+    try {
+        const item = await Instruments.findById(req.params.id);
+        res.render('instruments/edit', {item})
+    }catch(err) {
+        console.log(err);
+        next();
+    }
+})
+
+//Put route shows newely edited item
+router.put('/:id', async (req, res, next) => {
+    try {
+        const item = await Instruments.findByIdAndUpdate(req.params.id, req.body);
+        res.redirect(`/instruments/${req.params.id}`)
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+})
+
+//Get route for delete
+router.get('/:id/delete', async (req, res, next) => {
+    try{
+        const item = await Instruments.findById(req.params.id);
+        res.render('instruments/delete', {item})
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+})
+
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const item  = await Instruments.findByIdAndDelete(req.params.id)
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+})
+//exports router to server
+mondule.exports = router;
