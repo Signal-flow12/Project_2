@@ -1,7 +1,7 @@
 <%- include('../header.ejs', {name: "Edit " + item.name}) %>
 <h1>Edit <%= item.name %> Inventory</h1>
 
-<form method="POST" action="/instruments/<%= item._id %>?_method="PUT">
+<form method="POST" action="/instruments/<%= item._id %>?_method=PUT">
 <label>Name:<input type="text" name="name" class="newName" value="<%= item.name %>"></label>
 <label>Brand:<input type="text" name="brand" class="newBrand" value="<%= item.brand %>"></label>
 <label>Iamge URL:<input type="text" name="image" class="newImage" value="<%= item.image %>"></label>

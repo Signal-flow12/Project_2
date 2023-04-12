@@ -89,6 +89,7 @@ router.get('/:id/delete', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
     try {
         const item  = await Instruments.findByIdAndDelete(req.params.id)
+        res.redirect('/instruments');
     } catch(err) {
         console.log(err);
         next();
