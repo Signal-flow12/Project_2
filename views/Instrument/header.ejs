@@ -12,8 +12,8 @@
     <li><a href="/microphones"></a>Microphones</li>
     <li><a href="/myCart"></a>My Cart</li>
    
-    <%= if(name) { %>
-        <title> <%= name %> </title>
+    <%= if(typeof name !== 'undefined') { %>
+        <title><%= name %></title>
     <%= } else {  %>
         <title>Music Store App</title>
 </head>
