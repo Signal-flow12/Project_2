@@ -6,9 +6,21 @@ const cartSchema = new mongoose.Schema(
             type: String,
             required: [true, "Name required"]
         },
-        catalogueID: {
+        image: {
+            type: String
+        },
+        catLocation: {
             type: String,
-            required: [true, "ID Required"]
+            required: [true, "Link Required"]
+        },
+        price: {
+            type: Number,
+            required: [true, "Price Required"]
+        },
+        count: {
+            type: Number,
+            required: true,
+            default: 1
         }
 
     }, {timestamps: true}
