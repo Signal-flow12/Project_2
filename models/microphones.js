@@ -27,3 +27,5 @@ const microphonesSchema = new mongoose.Schema(
 )
 
 const Microphones = mongoose.model('microphones', microphonesSchema)
+
+module.exports = Microphones

@@ -1,7 +1,7 @@
 const express = require ('express');
 const router = express.Router();
-const { Microphones } = require('../models')
-const  { Seed } = require('../models')
+const { Microphones } = require('../models');
+const  { Seed } = require('../models');
 
 //Index
 router.get('', async (req, res, next) =>{
