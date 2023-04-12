@@ -21,7 +21,7 @@ const instrumentsSchema = new mongoose.Schema(
         description: {
             required: [true, "All Fields Required"],
             type: String,
-        },
+        }
         
     }, {timestamps: true}
 )
