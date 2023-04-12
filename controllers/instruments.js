@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { Instruments } = require('../models');
-const  { Seed } = require('../models')
+const  { Seed } = require('../models');
+const { default: mongoose } = require('mongoose');
+const { Cart } = require('../models')
 
 //Index route home page
 router.get('', async (req, res, next) => {
@@ -74,6 +76,19 @@ router.put('/:id', async (req, res, next) => {
         next();
     }
 })
+
+//Add to cart route
+// router.post('/:id/toCart', async (req, res, next) => {
+//     try {
+//         const catalogueItem = await Instruments.findById(req.params.id)
+//         const cartItem = {
+
+//         }
+//     } catch(err) {
+//         console.log(err)
+//         next()
+//     }
+// })
 
 //Get route for delete
 router.get('/:id/delete', async (req, res, next) => {
