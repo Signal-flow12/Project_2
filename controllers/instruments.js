@@ -5,8 +5,8 @@ const { Instruments } = require('../models');
 //Index route home page
 router.get('', async (req, res, next) => {
     try {
-        const item = await Instruments.find({});
-        res.render('instruments/index', {item} );
+        const items = await Instruments.find({});
+        res.render('instruments/index', {items} );
     }catch(err){
         console.log(err);
         next();
