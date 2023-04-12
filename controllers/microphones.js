@@ -79,7 +79,7 @@ router.get('/:id/delete', async (req, res, next) => {
     }
 })
 
-router.delete('/:id', async (req, res, next) {
+router.delete('/:id', async (req, res, next) => {
     try {
         const item = await Microphones.findByIdAndDelete(req.params.id);
         res.redirect('/microphones')

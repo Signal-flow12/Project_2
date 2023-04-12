@@ -1,6 +1,6 @@
-const express = require (express);
+const express = require ('express');
 const router = express.Router();
-const { Speakers } = require('../Models')
+const { Speakers } = require('../models')
 const  { Seed } = require('../models')
 
 router.get('', async (req, res, next) => {

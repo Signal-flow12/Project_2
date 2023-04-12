@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const speakerssSchema = new mongoose.Schema(
+const speakersSchema = new mongoose.Schema(
 {
     name: {
         required: [true, "All Fields Required"],
