@@ -1,10 +1,10 @@
 <%- include('../header.ejs', {name: item.name}) %>
 
 <h2 class="itemTitle"><%= item.name %></h2>
-<p class="brand"> <%= item.brand %></p>
+<p class="brand">Brand: <%= item.brand %></p>
 <img src="<%= item.image %>" alt="<%= item.name %> image">
-<p class="itemPrice"><%= item.price %></p>
-<p class="itemDescription"><%= item.description %></p>
+<p class="itemPrice">Price: <%= item.price %></p>
+<p class="itemDescription">Description: <%= item.description %></p>
 
 
 <p class="editButton"><a href="/instruments/<%= item._id %>/edit"</a>Edit</a></p>
