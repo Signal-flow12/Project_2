@@ -78,17 +78,17 @@ router.put('/:id', async (req, res, next) => {
 })
 
 //Add to cart route
-router.post('/:id/toCart', async (req, res, next) => {
-    try {
-        const catalogueItem = await Instruments.findById(req.params.id)
-        const cartItem = {
-            
-        }
-    } catch(err) {
-        console.log(err)
-        next()
-    }
-})
+// router.post('/:id/toCart', async (req, res, next) => {
+//     try {
+//         const catalogueItem = await Instruments.findById(req.params.id)
+//         const cartItem = {
+
+//         }
+//     } catch(err) {
+//         console.log(err)
+//         next()
+//     }
+// })
 
 //Get route for delete
 router.get('/:id/delete', async (req, res, next) => {
