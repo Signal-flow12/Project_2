@@ -7,7 +7,7 @@ const  { Seed } = require('../models');
 router.get('', async (req, res, next) =>{
     try{
         const items = await Microphones.find({});
-        res.render('microphone/index', {items});
+        res.render('microphones/index', {items});
     }catch(err) {
         console.log(err);
         next();
@@ -22,7 +22,7 @@ router.get('/seed', async (req, res, next) => {
     try{
         await Microphones.deleteMany({});
         await Microphones.insertMany(Seed)
-        res.redirect('microphones')
+        res.redirect('/microphones')
     }catch (err) {
         console.log(err);
         next();

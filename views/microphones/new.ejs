@@ -1,7 +1,7 @@
 <%- include('../header.ejs', {name: "New Instrument"}) %>
-<h1>Add Instrument to Inventory</h1>
+<h1>Add Micrphoone to Inventory</h1>
 
-<form method="POST" action="/instruments">
+<form method="POST" action="/microphones">
 <label>Name:<input type="text" name="name" class="newName"></label>
 <label>Brand:<input type="text" name="brand" class="newBrand"></label>
 <label>Iamge URL:<input type="text" name="image" class="newImage"></label>
@@ -10,6 +10,6 @@
 <input type="submit" value="submit">
 </form>
 
-<h3><a href="/instruments">Back to Instruments</a></h3>
+<h3><a href="/microphones">Back to Microphones</a></h3>
 
 <%- include('../footer.ejs',) %>
