@@ -1,6 +1,7 @@
 const express = require ('express');
 const router = express.Router();
 const { Microphones } = require('../models')
+const  { Seed } = require('../models')
 
 //Index
 router.get('', async (req, res, next) =>{
@@ -20,7 +21,7 @@ router.get('/new', (req, res) => {
 router.get('/seed', async (req, res, next) => {
     try{
         await Microphones.deleteMany({});
-        await Microphones.insertMany(seededData)
+        await Microphones.insertMany(Seed)
         res.redirect('microphones')
     }catch (err) {
         console.log(err);
