@@ -27,3 +27,5 @@ const speakersSchema = new mongoose.Schema(
 )
 
 const Speakers = mongoose.model('speakers', speakersSchema)
+
+module.exports = Speakers
