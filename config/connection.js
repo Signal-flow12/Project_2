@@ -6,7 +6,7 @@ const connectionString = process.env.DATABASE_URL;
 mongoose.connect(connectionString);
 
 mongoose.connection.on('connected', () => {
-    console.log(`${new Date().toLocalTimeString()}] - MongoDB Connected`)
+    console.log(`${new Date().toLocaleTimeString()}] - MongoDB Connected`)
 })
 
 mongoose.connection.on('error', (error) => {
