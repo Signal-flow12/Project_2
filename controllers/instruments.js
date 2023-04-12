@@ -1,12 +1,13 @@
-const express = require ('express');
+const express = require('express');
 const router = express.Router();
-
 const { Instruments } = require('../models');
+const  { Seed } = require('../models')
+
 //Index route home page
 router.get('', async (req, res, next) => {
     try {
-        const items = await Instruments.find({});
-        res.render('instruments/index', {items} );
+        const item = await Instruments.find({});
+        res.render('instruments/index', {items: item} );
     }catch(err){
         console.log(err);
         next();
@@ -16,11 +17,12 @@ router.get('', async (req, res, next) => {
 router.get('/new', (req, res) => {
     res.render('instruments/new.ejs')
 })
+
 //seed route reset data
-router.seed('/seed', async (req, res, next) => {
+router.get('/seed', async (req, res, next) => {
     try{
         await Instruments.deleteMany({});
-        await Instruments.insertMany(seededData);
+        await Instruments.create(Seed);
         res.redirect('/instruments')
 
     }catch(err){
@@ -28,6 +30,7 @@ router.seed('/seed', async (req, res, next) => {
         next();
     }
 })
+
 //show route
 router.get('/:id', async (req, res, next) => {
     try {
@@ -38,6 +41,7 @@ router.get('/:id', async (req, res, next) => {
         next();
     }
 })
+
 //post route
 router.post('', async (req, res, next) => {
     try{
@@ -84,7 +88,8 @@ router.get('/:id/delete', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const item = await Instruments.findByIdAndDelete(req.params.id)
+        const item  = await Instruments.findByIdAndDelete(req.params.id)
+        res.redirect('/instruments');
     } catch(err) {
         console.log(err);
         next();
