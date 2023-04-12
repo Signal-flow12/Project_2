@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require ('express');
 const router = express.Router();
 
 const { Instruments } = require('../models');
@@ -91,4 +91,4 @@ router.delete('/:id', async (req, res, next) => {
     }
 })
 //exports router to server
-mondule.exports = router;
+module.exports = router;

@@ -1,6 +1,6 @@
-const express = require (express);
+const express = require ('express');
 const router = express.Router();
-const { Microphones } = require('../Models')
+const { Microphones } = require('../models')
 
 //Index
 router.get('', async (req, res, next) =>{
@@ -80,7 +80,8 @@ router.get('/:id/delete', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) {
     try {
-
+        const item = await Microphones.findByIdAndDelete(req.params.id);
+        res.redirect('/microphones')
     }catch(err) {
         console.log(err);
         next();
