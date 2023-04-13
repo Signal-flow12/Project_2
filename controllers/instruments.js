@@ -77,18 +77,39 @@ router.put('/:id', async (req, res, next) => {
     }
 })
 
-//Add to cart route
-// router.post('/:id/toCart', async (req, res, next) => {
-//     try {
-//         const catalogueItem = await Instruments.findById(req.params.id)
-//         const cartItem = {
-
-//         }
-//     } catch(err) {
-//         console.log(err)
-//         next()
-//     }
-// })
+// Add to cart route
+router.get('/:id/toCart', async (req, res, next) => {
+    try {
+        let instrument = await Instruments.findById(req.params.id)
+        let cartItem = {
+            name: instrument.name,
+            brand: instrument.brand,
+            image: instrument.image,
+            price: instrument.price,
+            description: instrument.description,
+            location: `/instruments/${req.params.id}`,
+            count: 1
+        }
+        //console.log(cartItem)
+        const inCart = await Cart.exists({location: cartItem.location})
+        console.log(inCart)
+        if(inCart == null){
+           await Cart.create(cartItem)
+           res.redirect('/cart')
+        } else {
+            let instrumentV = await Cart.findOne({location: cartItem.location})
+            console.log(`InstrumentV: ${instrumentV}`)
+            console.log(instrumentV.count)
+            instrumentV.count += 1
+            console.log(`InstrumentV: ${instrumentV}`)
+         await Cart.findOneAndUpdate({location: cartItem.location}, instrumentV)
+         res.redirect('/cart')
+        }
+    } catch(err) {
+        console.log(err)
+        next()
+    }
+})
 
 //Get route for delete
 router.get('/:id/delete', async (req, res, next) => {
