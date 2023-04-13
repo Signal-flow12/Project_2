@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const instrumentsController = require('./controllers/instruments');
 const microphonesController = require('./controllers/microphones');
 const speakersController = require('./controllers/speakers');
+const cartController = require('./controllers/cart')
 
 //middleware
 app.set('view engine', 'ejs');
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 app.use('/instruments', instrumentsController);
 app.use('/microphones', microphonesController);
 app.use('/speakers', speakersController);
+app.use('/cart', cartController)
 
 
 app.get('/*', (req, res) => {

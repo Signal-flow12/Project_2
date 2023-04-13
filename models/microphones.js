@@ -16,7 +16,7 @@ const microphonesSchema = new mongoose.Schema(
     },
     price: {
         required: [true, "All Fields Required"],
-        type: String,
+        type: Number,
     },
     description: {
         required: [true, "All Fields Required"],

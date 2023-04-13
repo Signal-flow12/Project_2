@@ -3,19 +3,28 @@ const mongoose = require('mongoose')
 const cartSchema = new mongoose.Schema(
     {
         name: {
+            required: [true, "All Fields Required"],
             type: String,
-            required: [true, "Name required"]
+        },
+        brand: {
+            required: [true, "All Fields Required"],
+            type: String,
         },
         image: {
-            type: String
-        },
-        catLocation: {
             type: String,
-            required: [true, "Link Required"]
+            default: "."
         },
         price: {
+            required: [true, "All Fields Required"],
             type: Number,
-            required: [true, "Price Required"]
+        },
+        description: {
+            required: [true, "All Fields Required"],
+            type: String,
+        },
+        location: {
+            required: [true, "Location Reference Required"],
+            type: String
         },
         count: {
             type: Number,
