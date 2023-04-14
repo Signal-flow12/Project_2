@@ -9,10 +9,7 @@
 
 <p class="editButton"><a href="/speakers/<%= item._id %>/edit"</a>Edit</a></p>
 <p class="deleteButton"><a href="/speakers/<%= item._id %>/delete"</a>Delete</a></p>
-<form method="POST" action="/speakers/toCart">
-    <input type="text" name="id" style="display: none;" value="<%= item._id %>"">
-    <input type="submit" value="Add To Cart">
-</form>
+<a href="/speakers/<%= item._id %>/toCart"><button>Add To Cart</button></a>
 
 <h3><a href="/speakers">Back to Speakers</a></h3>
 
