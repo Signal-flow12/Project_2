@@ -2,12 +2,13 @@ const express = require ('express');
 const router = express.Router();
 const { Microphones } = require('../models');
 const  { Seed } = require('../models');
+const { Cart } = require('../models')
 
 //Index
 router.get('', async (req, res, next) =>{
     try{
         const items = await Microphones.find({});
-        res.render('microphone/index', {items});
+        res.render('microphones/index', {items});
     }catch(err) {
         console.log(err);
         next();
@@ -66,6 +67,35 @@ router.put('/:id', async (req, res, next) => {
     }catch(err) {
         console.log(err);
         next();
+    }
+})
+
+// Add to cart route
+router.get('/:id/toCart', async (req, res, next) => {
+    try {
+        let item = await Microphones.findById(req.params.id)
+        let cartItem = {
+            name: item.name,
+            brand: item.brand,
+            image: item.image,
+            price: item.price,
+            description: item.description,
+            location: `/microphones/${req.params.id}`,
+            count: 1
+        }
+        const inCart = await Cart.exists({location: cartItem.location})
+        if(inCart == null){
+           await Cart.create(cartItem)
+           res.redirect('/cart')
+        } else {
+            let itemV = await Cart.findOne({location: cartItem.location})
+            itemV.count += 1
+         await Cart.findOneAndUpdate({location: cartItem.location}, itemV)
+         res.redirect('/cart')
+        }
+    } catch(err) {
+        console.log(err)
+        next()
     }
 })
 

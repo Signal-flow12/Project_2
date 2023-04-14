@@ -13,6 +13,7 @@
     <form method="POST" action="/cart/<%= items[i]._id %>?_method=DELETE">
         <input type="submit" value="Remove From Cart">
     </form>
+    <p>Price: $<%= items[i].price %>.00</p>
     <% let subtotal = items[i].price * items[i].count %>
     <p>Subtotal: <%= `$${subtotal}.00` %></p>
     <% total += subtotal %>

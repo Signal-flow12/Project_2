@@ -1,8 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const {Instruments} = require('../models')
-const {Microphones} = require('../models')
-const {Speakers} = require('../models')
 const { Cart } = require('../models')
 
 router.get('/', async (req, res, next) => {
@@ -19,7 +16,6 @@ router.put('/:id', async (req, res, next) => {
         const item = await Cart.findById(req.params.id)
         updatedItem = item
         updatedItem.count = req.body.count
-        console.log(updatedItem)
         await Cart.findByIdAndUpdate(req.params.id, updatedItem)
         res.redirect('/cart')
     } catch(err) {
