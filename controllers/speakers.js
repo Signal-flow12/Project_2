@@ -2,6 +2,7 @@ const express = require ('express');
 const router = express.Router();
 const { Speakers } = require('../models')
 const  { Seed } = require('../models')
+const { Cart } = require('../models')
 
 router.get('', async (req, res, next) => {
     try{
@@ -68,10 +69,38 @@ router.put('/:id', async (req, res, next) => {
     }
 })
 
+// Add to cart route
+router.get('/:id/toCart', async (req, res, next) => {
+    try {
+        let item = await Speakers.findById(req.params.id)
+        let cartItem = {
+            name: item.name,
+            brand: item.brand,
+            image: item.image,
+            price: item.price,
+            description: item.description,
+            location: `/speakers/${req.params.id}`,
+            count: 1
+        }
+        const inCart = await Cart.exists({location: cartItem.location})
+        if(inCart == null){
+           await Cart.create(cartItem)
+           res.redirect('/cart')
+        } else {
+            let itemV = await Cart.findOne({location: cartItem.location})
+            itemV.count += 1
+         await Cart.findOneAndUpdate({location: cartItem.location}, itemV)
+         res.redirect('/cart')
+        }
+    } catch(err) {
+        console.log(err)
+        next()
+    }
+})
+
 router.get('/:id/delete', async (req, res, next) => {
     try {
         const item = await Speakers.findById(req.params.id);
-        // console.log(bookToBeDeleted);
         res.render('speakers/delete.ejs', {item})
     } catch(err) {
         console.log(err);

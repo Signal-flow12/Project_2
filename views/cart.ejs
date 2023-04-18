@@ -1,10 +1,11 @@
-<%- include('./header.ejs', {name: Shopping Cart}) %>
+<%- include('./header.ejs', {name: 'Shopping Cart'}) %>
 
 <h1>Shopping Cart</h1>
 <% let total = 0 %>
 <% for(let i = 0; i < items.length; i++) { %>
+    <a href="<%= items[i].location %>">
     <h3><%= items[i].name %></h3>
-    <img src="<%= items[i].image %>">
+    <img src="<%= items[i].image %>"></a>
     <form method="POST" action="/cart/<%= items[i]._id %>?_method=PUT">
         <label><input type="number" name="count" value="<%= items[i].count %>">Item(s)</label>
         <input type="submit" value="Update">
@@ -12,11 +13,12 @@
     <form method="POST" action="/cart/<%= items[i]._id %>?_method=DELETE">
         <input type="submit" value="Remove From Cart">
     </form>
+    <p>Price: $<%= items[i].price %>.00</p>
     <% let subtotal = items[i].price * items[i].count %>
     <p>Subtotal: <%= `$${subtotal}.00` %></p>
     <% total += subtotal %>
     <% } %>
-    <h3>Total: <%= total %></h3>
+    <h3>Total: $<%= total %>.00</h3>
 
 
 

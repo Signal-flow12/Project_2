@@ -77,18 +77,34 @@ router.put('/:id', async (req, res, next) => {
     }
 })
 
-//Add to cart route
-// router.post('/:id/toCart', async (req, res, next) => {
-//     try {
-//         const catalogueItem = await Instruments.findById(req.params.id)
-//         const cartItem = {
-
-//         }
-//     } catch(err) {
-//         console.log(err)
-//         next()
-//     }
-// })
+// Add to cart route
+router.get('/:id/toCart', async (req, res, next) => {
+    try {
+        let item = await Instruments.findById(req.params.id)
+        let cartItem = {
+            name: item.name,
+            brand: item.brand,
+            image: item.image,
+            price: item.price,
+            description: item.description,
+            location: `/instruments/${req.params.id}`,
+            count: 1
+        }
+        const inCart = await Cart.exists({location: cartItem.location})
+        if(inCart == null){
+           await Cart.create(cartItem)
+           res.redirect('/cart')
+        } else {
+            let itemV = await Cart.findOne({location: cartItem.location})
+            itemV.count += 1
+         await Cart.findOneAndUpdate({location: cartItem.location}, itemV)
+         res.redirect('/cart')
+        }
+    } catch(err) {
+        console.log(err)
+        next()
+    }
+})
 
 //Get route for delete
 router.get('/:id/delete', async (req, res, next) => {
