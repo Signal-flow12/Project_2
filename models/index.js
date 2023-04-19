@@ -5,5 +5,6 @@ module.exports = {
     Microphones: require('./microphones'),
     Speakers: require('./speakers'),
     Cart: require('./cart'),
-    Seed: require('./seed')
+    Seed: require('./seed'),
+    Users: require('./users')
 }

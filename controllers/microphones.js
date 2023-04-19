@@ -23,7 +23,7 @@ router.get('/seed', async (req, res, next) => {
     try{
         await Microphones.deleteMany({});
         await Microphones.insertMany(Seed)
-        res.redirect('microphones')
+        res.redirect('/microphones')
     }catch (err) {
         console.log(err);
         next();
