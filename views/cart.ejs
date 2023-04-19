@@ -1,24 +1,43 @@
 <%- include('./header.ejs', {name: 'Shopping Cart'}) %>
 
-<h1>Shopping Cart</h1>
-<% let total = 0 %>
-<% for(let i = 0; i < items.length; i++) { %>
-    <a href="<%= items[i].location %>">
-    <h3><%= items[i].name %></h3>
-    <img src="<%= items[i].image %>"></a>
-    <form method="POST" action="/cart/<%= items[i]._id %>?_method=PUT">
-        <label><input type="number" name="count" value="<%= items[i].count %>">Item(s)</label>
-        <input type="submit" value="Update">
-    </form>
-    <form method="POST" action="/cart/<%= items[i]._id %>?_method=DELETE">
-        <input type="submit" value="Remove From Cart">
-    </form>
-    <p>Price: $<%= items[i].price %>.00</p>
-    <% let subtotal = items[i].price * items[i].count %>
-    <p>Subtotal: <%= `$${subtotal}.00` %></p>
-    <% total += subtotal %>
-    <% } %>
-    <h3>Total: $<%= total %>.00</h3>
+<div class="container">
+    <div class="row">
+        <div class="col"></dic>
+            <h1>Shopping Cart</h1>
+        </div>
+    </div>
+    <% let total = 0 %>
+    <% for(let i = 0; i < items.length; i++) { %>
+    <div class="row">
+        <div class="col">
+            <a href="<%= items[i].location %>">
+            <h3><%= items[i].name %></h3></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <img src="<%= items[i].image %>" class="showImage, img-fluid">
+        </div>
+        <div class="col">
+            <p>Price: $<%= items[i].price %>.00</p>
+            <form method="POST" action="/cart/<%= items[i]._id %>?_method=PUT">
+                <label><input type="number" name="count" value="<%= items[i].count %>"> Item(s)</label>
+                <button type="submit" class="btn btn-secondary">Update</button>
+            </form>
+            <% let subtotal = items[i].price * items[i].count %>
+            <p>Subtotal: <%= `$${subtotal}.00` %></p>
+            <% total += subtotal %>
+            <form method="POST" action="/cart/<%= items[i]._id %>?_method=DELETE">
+                <input type="submit" value="Remove From Cart">
+            </form>
+        </div>
+    </div>
+        <% } %>
+    <div class="row">
+        <div class="col-4, offset-md-7">
+            <h3>Total: $<%= total %>.00</h3>
+        </div>
+    </div>
 
 
 
