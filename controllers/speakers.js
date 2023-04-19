@@ -61,8 +61,8 @@ router.get('/:id/edit', async (req, res, neext) => {
 
 router.put('/:id', async (req, res, next) => {
     try{
-        const ittem = await Speakers.findByIdandUpdate(req.params.id, req.body);
-        res.redirect(`/books/${req.params.id}`)
+        const item = await Speakers.findByIdAndUpdate(req.params.id, req.body);
+        res.redirect(`/speakers/${req.params.id}`)
     }catch(err) {
         console.log(err);
         next();
