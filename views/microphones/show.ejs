@@ -9,7 +9,12 @@
 
 <p class="editButton"><a href="/microphones/<%= item._id %>/edit"</a>Edit</a></p>
 <p class="deleteButton"><a href="/microphones/<%= item._id %>/delete"</a>Delete</a></p>
-<a href="/microphones/<%= item._id %>/toCart"><button>Add To Cart</button></a>
+<form method="POST" action="/microphones/toCart">
+    <input type="text" name="id" style="display: none;" value="<%= item._id %>"">
+    <input type="submit" value="Add To Cart">
+</form>
+
+<h3><a href="/microphones">Back to Microphones</a></h3>
 
 <h3><a href="/microphones">Back to Instruments</a></h3>
 

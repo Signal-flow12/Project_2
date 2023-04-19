@@ -8,6 +8,6 @@
 <p class="itemDescription"><%= item.description %></p>
 
 <p class="deleteWarning">Are you sure you want to remove this item from inventory?</p>
-<form method="POST" action="/instruments/<%= item._id %>?_method=DELETE"><input type="submit" value="Yes I'm Sure"></form>
+<form method="POST" action="/microphones/<%= item._id %>?_method=DELETE"><input type="submit" value="Yes I'm Sure"></form>
 
 <%- include('../footer.ejs',) %>

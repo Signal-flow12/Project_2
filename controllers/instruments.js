@@ -8,8 +8,10 @@ const { Cart } = require('../models')
 //Index route home page
 router.get('', async (req, res, next) => {
     try {
+        let user;
+        if (req.session.currentUser) user = req.session.currentUser.username;
         const item = await Instruments.find({});
-        res.render('instruments/index', {items: item} );
+        res.render('instruments/index', {items: item, user});
     }catch(err){
         console.log(err);
         next();
