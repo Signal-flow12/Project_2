@@ -3,15 +3,18 @@ const router = express.Router();
 const { Instruments } = require('../models');
 const  { Seed } = require('../models');
 const { default: mongoose } = require('mongoose');
-const { Cart } = require('../models')
+const { Cart } = require('../models');
 
 //Index route home page
 router.get('', async (req, res, next) => {
     try {
-        let user;
-        if (req.session.currentUser) user = req.session.currentUser.username;
+        console.log(req.session.currentUser.username)
+        
+        // let user;
+        // if (req.session.currentUser) user = req.session.currentUser.username;
         const item = await Instruments.find({});
-        res.render('instruments/index', {items: item, user});
+        res.render('instruments/index', {items: item, user: req.session.currentUser.username});
+        //console.log(`This is the session ${req.sesion}`)
     }catch(err){
         console.log(err);
         next();
