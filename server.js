@@ -58,6 +58,7 @@ app.use('/speakers', speakersController);
 app.use('/cart', cartController)
 
 
+
 app.get('/*', (req, res) => {
     res.render('404.ejs');
 })
