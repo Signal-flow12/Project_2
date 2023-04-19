@@ -1,79 +1,70 @@
-const express = require('express');
+const express = require ('express');
 const router = express.Router();
-const { Instruments } = require('../models');
+const { Microphones } = require('../models');
 const  { Seed } = require('../models');
-const { default: mongoose } = require('mongoose');
 const { Cart } = require('../models')
 
-//Index route home page
-router.get('', async (req, res, next) => {
-    try {
-        let user;
-        if (req.session.currentUser) user = req.session.currentUser.username;
-        const item = await Instruments.find({});
-        res.render('instruments/index', {items: item, user});
-    }catch(err){
+//Index
+router.get('', async (req, res, next) =>{
+    try{
+        const items = await Microphones.find({});
+        res.render('microphones/index', {items});
+    }catch(err) {
         console.log(err);
         next();
     }
-});
-
+})
+//New route
 router.get('/new', (req, res) => {
-    res.render('instruments/new.ejs')
+    res.render('microphones/new')
 })
 
-//seed route reset data
 router.get('/seed', async (req, res, next) => {
     try{
-        await Instruments.deleteMany({});
-        await Instruments.create(Seed);
-        res.redirect('/instruments')
-
-    }catch(err){
+        await Microphones.deleteMany({});
+        await Microphones.insertMany(Seed)
+        res.redirect('/microphones')
+    }catch (err) {
         console.log(err);
         next();
     }
 })
 
-//show route
 router.get('/:id', async (req, res, next) => {
-    try {
-        const item = await Instruments.findById(req.params.id);
-        res.render('instruments/show', {item})
-    } catch (err) {
-        console.log(err)
+    try{
+        const item = await Microphones.findById(req.params.id);
+        res.render('microphones/show', {item});
+    }catch (err) {
+        console.log(err);
         next();
     }
 })
 
-//post route
 router.post('', async (req, res, next) => {
     try{
-        const item = await Instruments.create(req.body);
-        res.redirect('/instruments')
-    } catch(err) {
+        const item = await Microphones.create(req.body)
+        res.redirect('/microphones')
+    }catch (err) {
         console.log(err);
         next();
     }
 })
 
-//Edit/Get route 
 router.get('/:id/edit', async (req, res, next) => {
-    try {
-        const item = await Instruments.findById(req.params.id);
-        res.render('instruments/edit', {item})
+    try{
+        const item = await Microphones.findById(req.params.id);
+        res.render('microphones/edit', {item})
     }catch(err) {
         console.log(err);
         next();
     }
 })
 
-//Put route shows newely edited item
 router.put('/:id', async (req, res, next) => {
     try {
-        const item = await Instruments.findByIdAndUpdate(req.params.id, req.body);
-        res.redirect(`/instruments/${req.params.id}`)
-    } catch(err) {
+        const item = await Microphones.findByIdAndUpdate(req.params.id, req.body)
+        res.redirect(`/microphones/${req.params.id}`)
+    }catch(err) {
         console.log(err);
         next();
     }
@@ -82,14 +73,14 @@ router.put('/:id', async (req, res, next) => {
 // Add to cart route
 router.get('/:id/toCart', async (req, res, next) => {
     try {
-        let item = await Instruments.findById(req.params.id)
+        let item = await Microphones.findById(req.params.id)
         let cartItem = {
             name: item.name,
             brand: item.brand,
             image: item.image,
             price: item.price,
             description: item.description,
-            location: `/instruments/${req.params.id}`,
+            location: `/microphones/${req.params.id}`,
             count: 1
         }
         const inCart = await Cart.exists({location: cartItem.location})
@@ -108,12 +99,11 @@ router.get('/:id/toCart', async (req, res, next) => {
     }
 })
 
-//Get route for delete
 router.get('/:id/delete', async (req, res, next) => {
-    try{
-        const item = await Instruments.findById(req.params.id);
-        res.render('instruments/delete', {item})
-    } catch(err) {
+    try {
+        const item = await Microphones.findById(req.params.id);
+        res.render('microphones/delete', {item})
+    }catch(err) {
         console.log(err);
         next();
     }
@@ -121,12 +111,12 @@ router.get('/:id/delete', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const item  = await Instruments.findByIdAndDelete(req.params.id)
-        res.redirect('/instruments');
-    } catch(err) {
+        const item = await Microphones.findByIdAndDelete(req.params.id);
+        res.redirect('/microphones')
+    }catch(err) {
         console.log(err);
         next();
     }
 })
-//exports router to server
+
 module.exports = router;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const speakerssSchema = new mongoose.Schema(
+const speakersSchema = new mongoose.Schema(
 {
     name: {
         required: [true, "All Fields Required"],
@@ -16,7 +16,7 @@ const speakerssSchema = new mongoose.Schema(
     },
     price: {
         required: [true, "All Fields Required"],
-        type: String,
+        type: Number,
     },
     description: {
         required: [true, "All Fields Required"],
@@ -27,3 +27,5 @@ const speakerssSchema = new mongoose.Schema(
 )
 
 const Speakers = mongoose.model('speakers', speakersSchema)
+
+module.exports = Speakers

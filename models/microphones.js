@@ -16,7 +16,7 @@ const microphonesSchema = new mongoose.Schema(
     },
     price: {
         required: [true, "All Fields Required"],
-        type: String,
+        type: Number,
     },
     description: {
         required: [true, "All Fields Required"],
@@ -27,3 +27,5 @@ const microphonesSchema = new mongoose.Schema(
 )
 
 const Microphones = mongoose.model('microphones', microphonesSchema)
+
+module.exports = Microphones

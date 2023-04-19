@@ -2,12 +2,12 @@
 <h1>Remove Item from Inventory</h1>
 
 <h2 class="itemTitle"><%= item.name %></h2>
-<p class="brand">Brand: <%= item.brand %></p>
+<p class="brand"><%= item.brand %></p>
 <img src="<%= item.image %>">
-<p class="itemPrice">Price: <%= item.price %></p>
-<p class="itemDescription">Description: <%= item.description %></p>
+<p class="itemPrice"><%= item.price %></p>
+<p class="itemDescription"><%= item.description %></p>
 
 <p class="deleteWarning">Are you sure you want to remove this item from inventory?</p>
-<form method="POST" action="/instruments/<%= item._id %>?_method=DELETE"><input type="submit" value="Yes I'm Sure"></form>
+<form method="POST" action="/microphones/<%= item._id %>?_method=DELETE"><input type="submit" value="Yes I'm Sure"></form>
 
 <%- include('../footer.ejs',) %>
