@@ -4,7 +4,7 @@
 <form method="POST" action="/instruments/<%= item._id %>?_method=PUT">
 <label>Name: <input type="text" name="name" class="newName" value="<%= item.name %>"></label>
 <label>Brand: <input type="text" name="brand" class="newBrand" value="<%= item.brand %>"></label>
-<label>Iamge URL: <input type="text" name="image" class="newImage" value="<%= item.image %>"></label>
+<label>Image URL: <input type="text" name="image" class="newImage" value="<%= item.image %>"></label>
 <label>Price: <input type="text" name="price" class="newPrice" value="<%= item.price %>"></label>
 <label>Description: <input type="text" name="description" class="newDescription" value="<%= item.description %>"></label>
 <input type="submit" value="submit">
