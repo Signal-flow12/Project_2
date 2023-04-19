@@ -25,7 +25,7 @@ app.use(
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 7
         },
-    }) 
+    })
 );
 
 // app.use((req, res, next) => {
@@ -56,6 +56,7 @@ app.use('/instruments', instrumentsController);
 app.use('/microphones', microphonesController);
 app.use('/speakers', speakersController);
 app.use('/cart', cartController)
+
 
 
 app.get('/*', (req, res) => {

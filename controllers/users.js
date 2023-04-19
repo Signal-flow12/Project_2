@@ -25,9 +25,10 @@ router.post('/login', async (req, res, next) => {
         if (match) {
             req.session.currentUser = {
                 id: user._id,
-                username: user.name
+                username: user.username
             };
-            //Where do we want to redirt upon sign in. Right now it is the home page.
+            console.log(req.session);
+            //Where do we want to redirect upon sign in. Right now it is the home page.
             res.redirect('/');
         } else {
             res.redirect('/login');
