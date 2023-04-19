@@ -5,7 +5,7 @@ const { Cart } = require('../models')
 router.get('/', async (req, res, next) => {
     try {
         const item = await Cart.find({})
-        res.render('cart', {items: item})
+        res.render('cart', {items: item, user: req.session.currentUser.username})
     } catch(err) {
         console.log(err)
     }
@@ -17,7 +17,7 @@ router.put('/:id', async (req, res, next) => {
         updatedItem = item
         updatedItem.count = req.body.count
         await Cart.findByIdAndUpdate(req.params.id, updatedItem)
-        res.redirect('/cart')
+        res.redirect('/cart', {user: req.session.currentUser.username})
     } catch(err) {
         console.log(err)
         next()
