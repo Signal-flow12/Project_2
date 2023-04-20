@@ -14,8 +14,9 @@
     <% } %>
 </head>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">  <% if(user) { %>
-        Welcome <%= user %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+    <% if(typeof user !== 'undefined' && user) { %>
+       <p>Welcome <%= user %> </p>
     <% } %>
         <div class="container-md">
             <a href="/">Home</a>

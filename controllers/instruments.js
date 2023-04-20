@@ -8,12 +8,11 @@ const { Cart } = require('../models');
 //Index route home page
 router.get('', async (req, res, next) => {
     try {
-        console.log(req.session.currentUser.username)
-        
-        // let user;
-        // if (req.session.currentUser) user = req.session.currentUser.username;
+        //console.log(req.session.currentUser.username)
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Instruments.find({});
-        res.render('instruments/index', {items: item, user: req.session.currentUser.username});
+        res.render('instruments/index', {items: item, user: myUser});
         //console.log(`This is the session ${req.sesion}`)
     }catch(err){
         console.log(err);
@@ -22,7 +21,9 @@ router.get('', async (req, res, next) => {
 });
 
 router.get('/new', (req, res) => {
-    res.render('instruments/new.ejs', {user: req.session.currentUser.username});
+    let myUser;
+    if (req.session.currentUser) myUser = req.session.currentUser.username;
+    res.render('instruments/new.ejs', {user: myUser});
 })
 
 //seed route reset data
@@ -41,8 +42,10 @@ router.get('/seed', async (req, res, next) => {
 //show route
 router.get('/:id', async (req, res, next) => {
     try {
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Instruments.findById(req.params.id);
-        res.render('instruments/show', {item, user: req.session.currentUser.username})
+        res.render('instruments/show', {item, user: myUser})
     } catch (err) {
         console.log(err)
         next();
@@ -63,8 +66,10 @@ router.post('', async (req, res, next) => {
 //Edit/Get route 
 router.get('/:id/edit', async (req, res, next) => {
     try {
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Instruments.findById(req.params.id);
-        res.render('instruments/edit', {item, user: req.session.currentUser.username})
+        res.render('instruments/edit', {item, user: myUser})
     }catch(err) {
         console.log(err);
         next();
@@ -114,8 +119,10 @@ router.get('/:id/toCart', async (req, res, next) => {
 //Get route for delete
 router.get('/:id/delete', async (req, res, next) => {
     try{
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Instruments.findById(req.params.id);
-        res.render('instruments/delete', {item, user: req.session.currentUser.username })
+        res.render('instruments/delete', {item, user: myUser })
     } catch(err) {
         console.log(err);
         next();
@@ -124,8 +131,10 @@ router.get('/:id/delete', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item  = await Instruments.findByIdAndDelete(req.params.id)
-        res.redirect('/instruments', {user: req.session.currentUser.username});
+        res.redirect('/instruments', {user: myUser});
     } catch(err) {
         console.log(err);
         next();
