@@ -6,8 +6,10 @@ const { Cart } = require('../models')
 
 router.get('', async (req, res, next) => {
     try{
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const items = await Speakers.find({});
-        res.render('speakers/index', {items, user: req.session.currentUser.username})
+        res.render('speakers/index', {items, myUser})
     }catch(err) {
         console.log(err);
         next();
@@ -15,11 +17,14 @@ router.get('', async (req, res, next) => {
 })
 
 router.get('/new', (req, res, next) => {
-    res.render('speakers/new', {user: req.session.currentUser.username});
+    let myUser;
+    if (req.session.currentUser) myUser = req.session.currentUser.username;
+    res.render('speakers/new', {myUser});
 })
 
 router.get('/seed', async (req, res, next) => {
     try{
+        
         await Speakers.deleteMany({});
         await Speakers.insertMany(Seed)
         res.redirect('speakers')
@@ -31,8 +36,10 @@ router.get('/seed', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try{
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Speakers.findById(req.params.id)
-        res.render('speakers/show', {item, user: req.session.currentUser.username})
+        res.render('speakers/show', {item, myUser})
     }catch(err) {
         console.log(err);
         next();
@@ -51,8 +58,10 @@ router.post('', async (req, res, next) => {
 
 router.get('/:id/edit', async (req, res, neext) => {
     try{
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Speakers.findById(req.params.id);
-        res.render('speakers/edit', {item, user: req.session.currentUser.username});
+        res.render('speakers/edit', {item, myUser});
     }catch(err) {
         console.log(err);
         next();
@@ -100,8 +109,10 @@ router.get('/:id/toCart', async (req, res, next) => {
 
 router.get('/:id/delete', async (req, res, next) => {
     try {
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Speakers.findById(req.params.id);
-        res.render('speakers/delete.ejs', {item, user: req.session.currentUser.username})
+        res.render('speakers/delete.ejs', {item, myUser})
     } catch(err) {
         console.log(err);
         next();
