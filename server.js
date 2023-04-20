@@ -28,7 +28,7 @@ app.use(
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 7
         },
-    }) 
+    })
 );
 
 // app.use((req, res, next) => {
@@ -76,6 +76,7 @@ app.get('/', async (req, res, next) => {
         console.log(err)
         next();
     }});
+
 
 app.get('/*', (req, res) => {
     res.render('404.ejs');
