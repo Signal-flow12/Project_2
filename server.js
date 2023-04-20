@@ -9,6 +9,9 @@ const cartController = require('./controllers/cart')
 const userController = require('./controllers/users')
 const session = require('express-session');
 const MongoStore = require('connect-mongo')
+const { Instruments } = require('./models');
+const { Microphones } = require('./models');
+const { Speakers } = require('./models');
 
 //middleware
 app.set('view engine', 'ejs');
@@ -47,9 +50,6 @@ app.use(
 //     req.session.currentUser ? isLoggedIn() : guestUser;
 // })
 
-app.get('/', (req, res) => {
-    res.send('Music shopping app')
-})
 
 app.use('', userController)
 app.use('/instruments', instrumentsController);
@@ -57,6 +57,25 @@ app.use('/microphones', microphonesController);
 app.use('/speakers', speakersController);
 app.use('/cart', cartController)
 
+app.get('/', async (req, res, next) => {
+    try {
+        let ranInstrument;
+        let ranMicrophone;
+        let ranSpeaker;
+
+        const instruments = await Instruments.find({});
+        ranInstrument = instruments[Math.floor(Math.random() * instruments.length - 1)]
+        const microphones = await Microphones.find({});
+        ranMicrophone = microphones[Math.floor(Math.random() * microphones.length - 1)]
+        const speakers = await Speakers.find({});
+        ranSpeaker = speakers[Math.floor(Math.random() * speakers.length - 1)]
+
+        res.render('./index', {ranInstrument, ranMicrophone, ranSpeaker} )
+        
+    } catch(err) {
+        console.log(err)
+        next();
+    }});
 
 
 app.get('/*', (req, res) => {
