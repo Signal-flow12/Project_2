@@ -3,10 +3,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
-        <% if(user) { %>
-            <h3>Hello, <%= user %></h3>
-        <% } %>
             <h1 class="title">Instruments</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <a href="/instruments/new"><button class="btn btn-secondary">Add New Instrument</button></a>
         </div>
     </div>
 <br>
@@ -21,7 +24,7 @@
             <a href="/instruments/<%= items[i]._id %>"><img src="<%= items[i].image %>" class="indeximg, img-fluid"></a>
         </div>
         <div class="col">
-            <p class="indexPrice">Price: <%= items[i].price %></p>
+            <p class="indexPrice">Price: $<%= items[i].price %>.00</p>
             <p class="indexDescription">Description: <%= items[i].description %></p>
         </div>
     </div>

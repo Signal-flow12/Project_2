@@ -8,7 +8,7 @@ const { Cart } = require('../models')
 router.get('', async (req, res, next) =>{
     try{
         const items = await Microphones.find({});
-        res.render('microphones/index', {items});
+        res.render('microphones/index', {items, user: req.session.currentUser.username});
     }catch(err) {
         console.log(err);
         next();
@@ -16,7 +16,7 @@ router.get('', async (req, res, next) =>{
 })
 //New route
 router.get('/new', (req, res) => {
-    res.render('microphones/new')
+    res.render('microphones/new', {user: req.session.currentUser.username})
 })
 
 router.get('/seed', async (req, res, next) => {
@@ -33,7 +33,7 @@ router.get('/seed', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     try{
         const item = await Microphones.findById(req.params.id);
-        res.render('microphones/show', {item});
+        res.render('microphones/show', {item, user: req.session.currentUser.username});
     }catch (err) {
         console.log(err);
         next();
@@ -53,7 +53,7 @@ router.post('', async (req, res, next) => {
 router.get('/:id/edit', async (req, res, next) => {
     try{
         const item = await Microphones.findById(req.params.id);
-        res.render('microphones/edit', {item})
+        res.render('microphones/edit', {item, user: req.session.currentUser.username})
     }catch(err) {
         console.log(err);
         next();
@@ -102,7 +102,7 @@ router.get('/:id/toCart', async (req, res, next) => {
 router.get('/:id/delete', async (req, res, next) => {
     try {
         const item = await Microphones.findById(req.params.id);
-        res.render('microphones/delete', {item})
+        res.render('microphones/delete', {item, user: req.session.currentUser.username})
     }catch(err) {
         console.log(err);
         next();
@@ -112,7 +112,7 @@ router.get('/:id/delete', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
     try {
         const item = await Microphones.findByIdAndDelete(req.params.id);
-        res.redirect('/microphones')
+        res.redirect('/microphones', {user: req.session.currentUser.username})
     }catch(err) {
         console.log(err);
         next();
