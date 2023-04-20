@@ -25,9 +25,10 @@ router.post('/login', async (req, res, next) => {
         if (match) {
             req.session.currentUser = {
                 id: user._id,
-                username: user.name
+                username: user.username
             };
-            //Where do we want to redirt upon sign in. Right now it is the home page.
+            //console.log(req.session);
+            //Where do we want to redirect upon sign in. Right now it is the home page.
             res.redirect('/');
         } else {
             res.redirect('/login');
@@ -47,7 +48,7 @@ router.post('/signup', async(req, res, next) => {
         const hash = await bcrypt.hash(newUser.password, salt);
         newUser.password = hash;
         await Users.create(newUser);
-        res.redirect('/login')
+        res.redirect('/login', {user: req.session.currentUser.username})
     } catch(err) {
         console.log(err);
         next();

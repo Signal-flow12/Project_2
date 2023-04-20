@@ -7,7 +7,7 @@ const { Cart } = require('../models')
 router.get('', async (req, res, next) => {
     try{
         const items = await Speakers.find({});
-        res.render('speakers/index', {items})
+        res.render('speakers/index', {items, user: req.session.currentUser.username})
     }catch(err) {
         console.log(err);
         next();
@@ -15,7 +15,7 @@ router.get('', async (req, res, next) => {
 })
 
 router.get('/new', (req, res, next) => {
-    res.render('speakers/new');
+    res.render('speakers/new', {user: req.session.currentUser.username});
 })
 
 router.get('/seed', async (req, res, next) => {
@@ -32,7 +32,7 @@ router.get('/seed', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     try{
         const item = await Speakers.findById(req.params.id)
-        res.render('speakers/show', {item})
+        res.render('speakers/show', {item, user: req.session.currentUser.username})
     }catch(err) {
         console.log(err);
         next();
@@ -52,7 +52,7 @@ router.post('', async (req, res, next) => {
 router.get('/:id/edit', async (req, res, neext) => {
     try{
         const item = await Speakers.findById(req.params.id);
-        res.render('speakers/edit', {item});
+        res.render('speakers/edit', {item, user: req.session.currentUser.username});
     }catch(err) {
         console.log(err);
         next();
@@ -101,7 +101,7 @@ router.get('/:id/toCart', async (req, res, next) => {
 router.get('/:id/delete', async (req, res, next) => {
     try {
         const item = await Speakers.findById(req.params.id);
-        res.render('speakers/delete.ejs', {item})
+        res.render('speakers/delete.ejs', {item, user: req.session.currentUser.username})
     } catch(err) {
         console.log(err);
         next();
