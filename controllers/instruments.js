@@ -10,8 +10,8 @@ router.get('', async (req, res, next) => {
     try {
         console.log(req.session.currentUser.username)
         
-        // let user;
-        // if (req.session.currentUser) user = req.session.currentUser.username;
+        //let user;
+        //if (req.session.currentUser) user = req.session.currentUser.username;
         const item = await Instruments.find({});
         res.render('instruments/index', {items: item, user: req.session.currentUser.username});
         //console.log(`This is the session ${req.sesion}`)
