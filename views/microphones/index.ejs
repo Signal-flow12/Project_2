@@ -1,14 +1,36 @@
-<%- include('../header.ejs', {name: 'Microphone Index'}) %>
+<%- include('../header.ejs', {name: 'Instrument Index'}) %>
 
-<h1 class="title">Microphones</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="title">Microphones</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <a href="/microphones/new"><button class="btn btn-secondary">Add New Microphone</button></a>
+        </div>
+    </div>
 <br>
 <% for(let i= 0; i < items.length; i++) { %>
-    <div class="indexDiv">
-    <a href="/microphones/<%= items[i]._id %>"<h3><%= items[i].name %></h3>
-    <img src="<%= items[i].image %>" class="indeximg"></a>
-    <p class="indexPrice"><%= items[i].price %></p>
-    <p class="indexDescription"><%= items[i].description %></p>
+    <div class="row">
+        <div class="col">
+            <a href="/microphones/<%= items[i]._id %>"><h3><%= items[i].name %></h3></a>
+        </div>
     </div>
-    <% } %>
+    <div class="row">
+        <div class="col-4">
+            <a href="/microphones/<%= items[i]._id %>"><img src="<%= items[i].image %>" class="indeximg, img-fluid"></a>
+        </div>
+        <div class="col">
+            <p class="indexPrice">Price: <%= items[i].price %></p>
+            <p class="indexDescription">Description: <%= items[i].description %></p>
+        </div>
+    </div>
+
+<% } %>
+
+
 
 <%- include('../footer.ejs') %>

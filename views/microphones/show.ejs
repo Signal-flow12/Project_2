@@ -1,22 +1,32 @@
 <%- include('../header.ejs', {name: item.name}) %>
 
-<h2 class="itemTitle"><%= item.name %></h2>
-<p class="brand"> <%= item.brand %></p>
-<img src="<%= item.image %>" alt="<%= item.name %> image">
-<p class="itemPrice"><%= item.price %></p>
-<p class="itemDescription"><%= item.description %></p>
 
-
-<p class="editButton"><a href="/microphones/<%= item._id %>/edit"</a>Edit</a></p>
-<p class="deleteButton"><a href="/microphones/<%= item._id %>/delete"</a>Delete</a></p>
-<form method="POST" action="/microphones/toCart">
-    <input type="text" name="id" style="display: none;" value="<%= item._id %>"">
-    <input type="submit" value="Add To Cart">
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="itemTitle"><%= item.name %></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <img src="<%= item.image %>" alt="<%= item.name %> image" class="showImage, img-fluid">
+        </div>
+        <div class="col-8">
+            <p class="brand">Brand: <%= item.brand %></p>
+            <p class="itemDescription">Description: <%= item.description %></p>
+            <p class="itemPrice">Price: $<%= item.price %>.00</p>
+            <a href="/microphones/<%= item._id %>/toCart"><button>Add To Cart</button></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="/microphones/<%= item._id %>/edit"><button type="button" class="btn btn-secondary">Edit</button></a>
+            <a href="/microphones/<%= item._id %>/delete"><button type="button" class="btn btn-danger">Delete</button></a>
+        </div>
+    </div>
 
 <h3><a href="/microphones">Back to Microphones</a></h3>
 
-<h3><a href="/microphones">Back to Instruments</a></h3>
 
 
 <%- include('../footer.ejs',) %>
