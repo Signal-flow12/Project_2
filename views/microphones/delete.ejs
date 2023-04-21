@@ -1,13 +1,32 @@
 <%- include('../header.ejs', {name: "Delete " + item.name}) %>
-<h1>Remove Item from Inventory</h1>
 
-<h2 class="itemTitle"><%= item.name %></h2>
-<p class="brand"><%= item.brand %></p>
-<img src="<%= item.image %>">
-<p class="itemPrice"><%= item.price %></p>
-<p class="itemDescription"><%= item.description %></p>
+<div class="container">
 
-<p class="deleteWarning">Are you sure you want to remove this item from inventory?</p>
-<form method="POST" action="/microphones/<%= item._id %>?_method=DELETE"><input type="submit" value="Yes I'm Sure"></form>
+    <div class="row">
+        <div class="col">
+            <h1>Remove Item from Inventory</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2 class="itemTitle"><%= item.name %></h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <img src="<%= item.image %>" class="img-fluid">
+        </div>
+        <div class="col">
+            <p class="brand">Brand: <%= item.brand %></p>
+            <p class="itemPrice">Price: $<%= item.price %>.00</p>
+            <p class="itemDescription">Description: <%= item.description %></p>
+
+            <p class="deleteWarning">Are you sure you want to remove this item from inventory?</p>
+            <form method="POST" action="/microphones/<%= item._id %>?_method=DELETE"><button type="submit" class="but btn-danger">Yes I'm Sure</button></form>
+        </div>
+    </div>
+
+
 
 <%- include('../footer.ejs',) %>
