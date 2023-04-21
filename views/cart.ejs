@@ -18,7 +18,7 @@
         <div class="col-3">
             <a href="<%= items[i].location %>"><img src="<%= items[i].image %>" class="showImage, img-fluid"></a>
         </div>
-        <div class="col">
+        <div class="col-5">
             <p>Price: $<%= items[i].price %>.00</p>
             <form method="POST" action="/cart/<%= items[i]._id %>?_method=PUT">
                 <label><input type="number" name="count" value="<%= items[i].count %>"> Item(s)</label>
