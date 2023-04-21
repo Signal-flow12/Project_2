@@ -1,14 +1,37 @@
 <%- include('../header.ejs', {name: "Edit " + item.name}) %>
-<h1>Edit <%= item.name %> Inventory</h1>
 
-<form method="POST" action="/instruments/<%= item._id %>?_method=PUT">
-<label>Name: <input type="text" name="name" class="newName" value="<%= item.name %>"></label>
-<label>Brand: <input type="text" name="brand" class="newBrand" value="<%= item.brand %>"></label>
-<label>Iamge URL: <input type="text" name="image" class="newImage" value="<%= item.image %>"></label>
-<label>Price: <input type="text" name="price" class="newPrice" value="<%= item.price %>"></label>
-<label>Description: <input type="text" name="description" class="newDescription" value="<%= item.description %>"></label>
-<input type="submit" value="submit">
-</form>
+<div class="container instrumentBG">
+    <div class="row">
+        <div class="col">
+            <h1>Edit <%= item.name %> Inventory</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <form method="POST" action="/instruments/<%= item._id %>?_method=PUT">
+                <div class="mb-3">
+                    <label class="form-label">Name: <input type="text" name="name" class="form-control" value="<%= item.name %>"></label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Brand: <input type="text" name="brand" class="form-control" value="<%= item.brand %>"></label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Image URL: <input type="text" name="image" class="form-control" value="<%= item.image %>"></label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Price: <input type="text" name="price" class="form-control" value="<%= item.price %>"></label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description: <textarea name="description" class="form-control" class="newDescription" value="<%= item.description %>"></textarea></label>
+                </div>
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
 
 <h3><a href="/instruments">Back to Instruments</a></h3>
 
