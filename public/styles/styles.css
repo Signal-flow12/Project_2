@@ -1,0 +1,20 @@
+.showImage {
+    max-width: 300px;
+}
+
+.newField {
+    display: block;
+}
+
+.instrumentBG {
+    background-image: url('https://images.pexels.com/photos/5396357/pexels-photo-5396357.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.contentBox {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 6px;
+}
