@@ -21,7 +21,7 @@ router.put('/:id', async (req, res, next) => {
         updatedItem = item
         updatedItem.count = req.body.count
         await Cart.findByIdAndUpdate(req.params.id, updatedItem)
-        res.redirect('/cart', {myUser})
+        res.redirect('/cart')
     } catch(err) {
         console.log(err)
         next()
