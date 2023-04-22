@@ -19,7 +19,7 @@ router.get('', async (req, res, next) =>{
 //New route
 router.get('/new', (req, res) => {
     let myUser;
-        if (req.session.currentUser) myUser = req.session.currentUser.username;
+    if (req.session.currentUser) myUser = req.session.currentUser.username;
     res.render('microphones/new', {myUser})
 })
 
