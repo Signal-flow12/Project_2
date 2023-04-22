@@ -11,7 +11,7 @@ router.get('', async (req, res, next) => {
         let myUser;
         if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Instruments.find({});
-        res.render('instruments/index', {items: item, user: myUser});
+        res.render('instruments/index', {items: item, myUser});
         //console.log(`This is the session ${req.sesion}`)
     }catch(err){
         console.log(err);
@@ -22,7 +22,7 @@ router.get('', async (req, res, next) => {
 router.get('/new', (req, res) => {
     let myUser;
     if (req.session.currentUser) myUser = req.session.currentUser.username;
-    res.render('instruments/new.ejs', {user: myUser});
+    res.render('instruments/new.ejs', {myUser});
 })
 
 //seed route reset data
@@ -44,7 +44,7 @@ router.get('/:id', async (req, res, next) => {
         let myUser;
         if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Instruments.findById(req.params.id);
-        res.render('instruments/show', {item, user: myUser})
+        res.render('instruments/show', {item, myUser})
     } catch (err) {
         console.log(err)
         next();
@@ -68,7 +68,7 @@ router.get('/:id/edit', async (req, res, next) => {
         let myUser;
         if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Instruments.findById(req.params.id);
-        res.render('instruments/edit', {item, user: myUser})
+        res.render('instruments/edit', {item, myUser})
     }catch(err) {
         console.log(err);
         next();
@@ -121,7 +121,7 @@ router.get('/:id/delete', async (req, res, next) => {
         let myUser;
         if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Instruments.findById(req.params.id);
-        res.render('instruments/delete', {item, user: myUser })
+        res.render('instruments/delete', {item, myUser })
     } catch(err) {
         console.log(err);
         next();
@@ -133,7 +133,7 @@ router.delete('/:id', async (req, res, next) => {
         let myUser;
         if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item  = await Instruments.findByIdAndDelete(req.params.id)
-        res.redirect('/instruments', {user: myUser});
+        res.redirect('/instruments', {myUser});
     } catch(err) {
         console.log(err);
         next();
