@@ -1,15 +1,39 @@
 <%- include('../header.ejs', {name: "New Instrument"}) %>
-<h1>Add Instrument to Inventory</h1>
 
-<form method="POST" action="/instruments">
-<label>Name: <input type="text" name="name" class="newName"></label>
-<label>Brand: <input type="text" name="brand" class="newBrand"></label>
-<label>Image URL: <input type="text" name="image" class="newImage"></label>
-<label>Price: <input type="text" name="price" class="newPrice"></label>
-<label>Description: <input type="text" name="description" class="newDescription"></label>
-<input type="submit" value="submit">
-</form>
+<div class="container instrumentBG">
+    <div class="row">
+        <div class="col title">
+            <h1>Add New Instrument to Inventory</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <p style="color: white;">All Fields Required!</p>
+            <form method="POST" action="/instruments">
+                <div class="mb-3">
+                    <label class="form-label">Name: <input type="text" name="name" class="form-control"></label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Brand: <input type="text" name="brand" class="form-control"></label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Image URL: <input type="text" name="image" class="form-control"></label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Price: <input type="text" name="price" class="form-control"></label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description: <textarea name="description" class="form-control" class="newDescription"></textarea></label>
+                </div>
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+        </div>
+    </div>
 
-<h3><a href="/instruments">Back to Instruments</a></h3>
+
+
+
+
+<h3><a href="/instruments" style="color: white">Back to Instruments</a></h3>
 
 <%- include('../footer.ejs',) %>

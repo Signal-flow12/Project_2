@@ -1,18 +1,30 @@
 <%- include('./header.ejs', {name: 'Music Store App'}) %>
-<div>
-    <h1>Instruments</h1>
-    <img src="<%= ranInstrument.image %>">
-</div>
-<div>
-    <h1>Microphones</h1>
-    <img src="<%= ranMicrophone.image %>">
-</div>
-<div>
-    <h1>Speakers</h1>
-    <img src="<%= ranSpeaker.image %>">
-</div>
 
 
-<h1>hello</h1>
+<div class="container">
+    <div class="row my-custom-row justify-content-center align-content-center">
+        <div class="col-4">
+            <div class="p-4">
+                <a href="/instruments"><h1>Instruments</h1>
+                <img src="<%= ranInstrument.image %>" class="img-fluid">
+                </a>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="p-4">
+                <a href="/speakers"><h1>Speakers</h1>
+                <img src="<%= ranSpeaker.image %>" class="img-fluid">
+                </a>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="p-4">
+                <a href="/microphones"><h1>Microphones</h1>
+                <img src="<%= ranMicrophone.image %>" class="img-fluid">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <%- include('./footer.ejs') %>

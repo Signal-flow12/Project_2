@@ -62,15 +62,17 @@ app.get('/', async (req, res, next) => {
         let ranInstrument;
         let ranMicrophone;
         let ranSpeaker;
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
 
         const instruments = await Instruments.find({});
-        ranInstrument = instruments[Math.floor(Math.random() * instruments.length - 1)]
+        ranInstrument = instruments[Math.floor(Math.random() * (instruments.length - 1))]
         const microphones = await Microphones.find({});
-        ranMicrophone = microphones[Math.floor(Math.random() * microphones.length - 1)]
+        ranMicrophone = microphones[Math.floor(Math.random() * (microphones.length - 1))]
         const speakers = await Speakers.find({});
-        ranSpeaker = speakers[Math.floor(Math.random() * speakers.length - 1)]
+        ranSpeaker = speakers[Math.floor(Math.random() * (speakers.length - 1))]
 
-        res.render('./index', {ranInstrument, ranMicrophone, ranSpeaker} )
+        res.render('./index', {ranInstrument, ranMicrophone, ranSpeaker, myUser} )
         
     } catch(err) {
         console.log(err)

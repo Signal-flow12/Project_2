@@ -7,8 +7,10 @@ const { Cart } = require('../models')
 //Index
 router.get('', async (req, res, next) =>{
     try{
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const items = await Microphones.find({});
-        res.render('microphones/index', {items, user: req.session.currentUser.username});
+        res.render('microphones/index', {items, myUser});
     }catch(err) {
         console.log(err);
         next();
@@ -16,7 +18,9 @@ router.get('', async (req, res, next) =>{
 })
 //New route
 router.get('/new', (req, res) => {
-    res.render('microphones/new', {user: req.session.currentUser.username})
+    let myUser;
+    if (req.session.currentUser) myUser = req.session.currentUser.username;
+    res.render('microphones/new', {myUser})
 })
 
 router.get('/seed', async (req, res, next) => {
@@ -32,8 +36,10 @@ router.get('/seed', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try{
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Microphones.findById(req.params.id);
-        res.render('microphones/show', {item, user: req.session.currentUser.username});
+        res.render('microphones/show', {item, myUser});
     }catch (err) {
         console.log(err);
         next();
@@ -52,8 +58,10 @@ router.post('', async (req, res, next) => {
 
 router.get('/:id/edit', async (req, res, next) => {
     try{
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Microphones.findById(req.params.id);
-        res.render('microphones/edit', {item, user: req.session.currentUser.username})
+        res.render('microphones/edit', {item, myUser})
     }catch(err) {
         console.log(err);
         next();
@@ -101,8 +109,10 @@ router.get('/:id/toCart', async (req, res, next) => {
 
 router.get('/:id/delete', async (req, res, next) => {
     try {
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Microphones.findById(req.params.id);
-        res.render('microphones/delete', {item, user: req.session.currentUser.username})
+        res.render('microphones/delete', {item, myUser})
     }catch(err) {
         console.log(err);
         next();
@@ -111,8 +121,10 @@ router.get('/:id/delete', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
+        let myUser;
+        if (req.session.currentUser) myUser = req.session.currentUser.username;
         const item = await Microphones.findByIdAndDelete(req.params.id);
-        res.redirect('/microphones', {user: req.session.currentUser.username})
+        res.redirect('/microphones', {myUser})
     }catch(err) {
         console.log(err);
         next();

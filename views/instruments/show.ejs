@@ -1,21 +1,22 @@
 <%- include('../header.ejs', {name: item.name}) %>
 
 
-<div class="container">
+<div class="container instrumentBG">
     <div class="row">
-        <div class="col">
-            <h2 class="itemTitle"><%= item.name %></h2>
+        <div class="col itemTitle">
+            <h2><%= item.name %></h2>
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-4">
             <img src="<%= item.image %>" alt="<%= item.name %> image" class="showImage, img-fluid">
         </div>
-        <div class="col-8">
+        <div class="col-8 contentBox">
             <p class="brand">Brand: <%= item.brand %></p>
             <p class="itemDescription">Description: <%= item.description %></p>
-            <p class="itemPrice">Price: <%= item.price %></p>
-            <a href="/instruments/<%= item._id %>/toCart"><button>Add To Cart</button></a>
+            <p class="itemPrice">Price: $<%= item.price %>.00</p>
+            <a href="/instruments/<%= item._id %>/toCart"><button class="btn btn-primary">Add To Cart</button></a>
         </div>
     </div>
     <div class="row">
@@ -26,8 +27,8 @@
     </div>
 
 
-<h3><a href="/instruments">Back to Instruments</a></h3>
+<h3><a href="/instruments" style="color: white;">Back to Instruments</a></h3>
 
 
 
-<%- include('../footer.ejs',) %>
+<%- include('../footer.ejs') %>

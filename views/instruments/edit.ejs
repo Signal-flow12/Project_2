@@ -1,13 +1,14 @@
 <%- include('../header.ejs', {name: "Edit " + item.name}) %>
 
-<div class="container">
+<div class="container instrumentBG">
     <div class="row">
-        <div class="col">
-            <h1>Edit <%= item.name %> Inventory</h1>
+        <div class="col itemTitle">
+            <h1>Edit <%= item.name %> Inventory Item</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-5">
+            <p style="color: white;">All Fields Required!</p>
             <form method="POST" action="/instruments/<%= item._id %>?_method=PUT">
                 <div class="mb-3">
                     <label class="form-label">Name: <input type="text" name="name" class="form-control" value="<%= item.name %>"></label>
@@ -22,7 +23,7 @@
                     <label class="form-label">Price: <input type="text" name="price" class="form-control" value="<%= item.price %>"></label>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Description: <textarea name="description" class="form-control" class="newDescription" value="<%= item.description %>"></textarea></label>
+                    <label class="form-label">Description: <input type="text" name="description" class="form-control newDescription" value="<%= item.description %>"></input></label>
                 </div>
                 <button type="submit" class="btn btn-secondary">Submit</button>
             </form>
@@ -30,9 +31,6 @@
     </div>
 
 
-
-
-
-<h3><a href="/instruments">Back to Instruments</a></h3>
+<h3><a href="/instruments" style="color: white">Back to Instruments</a></h3>
 
 <%- include('../footer.ejs',) %>
