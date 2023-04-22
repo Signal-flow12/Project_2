@@ -3,13 +3,13 @@
 <div class="container instrumentBG">
 
     <div class="row">
-        <div class="col">
+        <div class="col title">
             <h1>Remove Item from Inventory</h1>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <h2 class="itemTitle"><%= item.name %></h2>
+            <h2 style="color: white;"><%= item.name %></h2>
         </div>
     </div>
 
@@ -17,7 +17,7 @@
         <div class="col-3">
             <img src="<%= item.image %>" class="img-fluid">
         </div>
-        <div class="col">
+        <div class="col contentBox">
             <p class="brand">Brand: <%= item.brand %></p>
             <p class="itemPrice">Price: $<%= item.price %>.00</p>
             <p class="itemDescription">Description: <%= item.description %></p>
