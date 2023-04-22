@@ -2,8 +2,8 @@
 
 <div class="container instrumentBG">
     <div class="row">
-        <div class="col">
-            <h1 class="title" style="color: white;">Instruments</h1>
+        <div class="col title">
+            <h1 style="color: white;">Instruments</h1>
         </div>
     </div>
     <br>
@@ -16,7 +16,7 @@
 <% for(let i= 0; i < items.length; i++) { %>
     <div class="row">
         <div class="col">
-            <a href="/instruments/<%= items[i]._id %>"><h3><%= items[i].name %></h3></a>
+            <a href="/instruments/<%= items[i]._id %>" style="color: white;"><h3><%= items[i].name %></h3></a>
         </div>
     </div>
     <div class="row">
